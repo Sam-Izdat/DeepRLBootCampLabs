@@ -48,9 +48,9 @@ flags.DEFINE_integer("step_mul", 1, "Game steps per agent step.")
 
 flags.DEFINE_string("agent", "pysc2.agents.random_agent.RandomAgent",
                     "Which agent to run")
-flags.DEFINE_enum("agent_race", None, sc2_env.Race._member_names_(), "Agent's race.")
-flags.DEFINE_enum("bot_race", None, sc2_env.Race._member_names_(), "Bot's race.")
-flags.DEFINE_enum("difficulty", None, sc2_env.Difficulty._member_names_(),
+flags.DEFINE_enum("agent_race", None, sc2_env.Race._member_names_, "Agent's race.")
+flags.DEFINE_enum("bot_race", None, sc2_env.Race._member_names_, "Bot's race.")
+flags.DEFINE_enum("difficulty", None, sc2_env.Difficulty._member_names_,
                   "Bot's strength.")
 
 flags.DEFINE_bool("profile", False, "Whether to turn on code profiling.")
