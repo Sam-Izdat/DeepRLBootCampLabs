@@ -51,6 +51,11 @@ point_flag.DEFINE_point("rgb_screen_size", None,
                         "Resolution for rendered screen.")
 point_flag.DEFINE_point("rgb_minimap_size", None,
                         "Resolution for rendered minimap.")
+flags.DEFINE_enum("action_space", None, sc2_env.ActionSpace._member_names_,  # pylint: disable=protected-access
+                  "Which action space to use. Needed if you take both feature "
+                  "and rgb observations.")
+flags.DEFINE_bool("use_feature_units", False,
+                  "Whether to include feature units.")
                            
 def run_thread(map_name, visualize):
   
