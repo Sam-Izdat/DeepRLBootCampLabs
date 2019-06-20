@@ -5,6 +5,7 @@ from pysc2 import maps
 from pysc2.env import available_actions_printer
 # from pysc2.env import run_loop
 from pysc2.env import sc2_env
+from pysc2.lib import point_flag
 from pysc2.lib import stopwatch
 
 from absl import app
@@ -42,16 +43,19 @@ flags.mark_flag_as_required("map")
 
 
 
-    # point_flag.DEFINE_point("feature_screen_size", "84",
-    #                         "Resolution for screen feature layers.")
-    # point_flag.DEFINE_point("feature_minimap_size", "64",
-    #                         "Resolution for minimap feature layers.")
-    # point_flag.DEFINE_point("rgb_screen_size", None,
-    #                         "Resolution for rendered screen.")
-    # point_flag.DEFINE_point("rgb_minimap_size", None,
-    #                         "Resolution for rendered minimap.")
+point_flag.DEFINE_point("feature_screen_size", "84",
+                        "Resolution for screen feature layers.")
+point_flag.DEFINE_point("feature_minimap_size", "64",
+                        "Resolution for minimap feature layers.")
+point_flag.DEFINE_point("rgb_screen_size", None,
+                        "Resolution for rendered screen.")
+point_flag.DEFINE_point("rgb_minimap_size", None,
+                        "Resolution for rendered minimap.")
                            
 def run_thread(map_name, visualize):
+  
+      # feature_screen_size=(FLAGS.screen_resolution, FLAGS.screen_resolution),
+      # feature_minimap_size=(FLAGS.minimap_resolution, FLAGS.minimap_resolution),
   with sc2_env.SC2Env(
       map_name=map_name,
       agent_race=FLAGS.agent_race,
@@ -59,8 +63,6 @@ def run_thread(map_name, visualize):
       difficulty=FLAGS.difficulty,
       step_mul=FLAGS.step_mul,
       game_steps_per_episode=FLAGS.game_steps_per_episode,
-      feature_screen_size=(FLAGS.screen_resolution, FLAGS.screen_resolution),
-      feature_minimap_size=(FLAGS.minimap_resolution, FLAGS.minimap_resolution),
       visualize=visualize) as env:
     env = available_actions_printer.AvailableActionsPrinter(env)
     agent = Agent()
