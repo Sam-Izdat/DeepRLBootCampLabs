@@ -40,6 +40,17 @@ flags.DEFINE_string("map", "MoveToBeacon", "Name of a map to use.")
 flags.mark_flag_as_required("map")
 
 
+
+
+    # point_flag.DEFINE_point("feature_screen_size", "84",
+    #                         "Resolution for screen feature layers.")
+    # point_flag.DEFINE_point("feature_minimap_size", "64",
+    #                         "Resolution for minimap feature layers.")
+    # point_flag.DEFINE_point("rgb_screen_size", None,
+    #                         "Resolution for rendered screen.")
+    # point_flag.DEFINE_point("rgb_minimap_size", None,
+    #                         "Resolution for rendered minimap.")
+                           
 def run_thread(map_name, visualize):
   with sc2_env.SC2Env(
       map_name=map_name,
@@ -48,8 +59,8 @@ def run_thread(map_name, visualize):
       difficulty=FLAGS.difficulty,
       step_mul=FLAGS.step_mul,
       game_steps_per_episode=FLAGS.game_steps_per_episode,
-      screen_size_px=(FLAGS.screen_resolution, FLAGS.screen_resolution),
-      minimap_size_px=(FLAGS.minimap_resolution, FLAGS.minimap_resolution),
+      feature_screen_size=(FLAGS.screen_resolution, FLAGS.screen_resolution),
+      feature_minimap_size=(FLAGS.minimap_resolution, FLAGS.minimap_resolution),
       visualize=visualize) as env:
     env = available_actions_printer.AvailableActionsPrinter(env)
     agent = Agent()
