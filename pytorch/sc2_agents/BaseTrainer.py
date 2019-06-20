@@ -58,6 +58,13 @@ def run_thread(map_name, visualize):
       # feature_minimap_size=(FLAGS.minimap_resolution, FLAGS.minimap_resolution),
   with sc2_env.SC2Env(
       map_name=map_name,
+      agent_interface_format=sc2_env.parse_agent_interface_format(
+          feature_screen=FLAGS.feature_screen_size,
+          feature_minimap=FLAGS.feature_minimap_size,
+          rgb_screen=FLAGS.rgb_screen_size,
+          rgb_minimap=FLAGS.rgb_minimap_size,
+          action_space=FLAGS.action_space,
+          use_feature_units=FLAGS.use_feature_units),
       agent_race=FLAGS.agent_race,
       bot_race=FLAGS.bot_race,
       difficulty=FLAGS.difficulty,
