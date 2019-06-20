@@ -124,7 +124,7 @@ class BaseRLAgent(BaseAgent):
       return action * self._screen_size*self._screen_size + target[0] * self._screen_size + target[1]
 
   def select_friendly_action(self, obs):
-    player_relative = obs.observation["screen"][_PLAYER_RELATIVE]
+    player_relative = obs.observation["feature_screen"][_PLAYER_RELATIVE]
     friendly_y, friendly_x = (player_relative == _PLAYER_FRIENDLY).nonzero()
     target = [int(friendly_x.mean()), int(friendly_y.mean())]
     return actions.FunctionCall(_SELECT_POINT, [[0], target])
